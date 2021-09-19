@@ -1,0 +1,49 @@
+plugins {
+    id 'java-library'
+}
+
+group 'org.vktools'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+task uberJar(type: Jar) {
+    archiveClassifier = 'app'
+    dependsOn configurations.runtimeClasspath
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Main-Class': 'org.configutils.PropertiesDiffCli'
+    }
+
+    from {[
+        sourceSets.main.output,
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    ]}
+}
+
+compileJava {
+    options.compilerArgs << '-Xlint:unchecked'
+}
+
+dependencies {
+    implementation 'commons-cli:commons-cli:1.4'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    testImplementation ('pl.pragmatists:JUnitParams:1.1.1') {
+        exclude group: 'junit'
+    }
+    testImplementation ('junit:junit:4.13.2') {
+        exclude group: 'hamcrest'
+    }
+    testImplementation 'org.hamcrest:hamcrest-core:2.2'
+    testImplementation 'org.mockito:mockito-core:2.0.2-beta'
+}

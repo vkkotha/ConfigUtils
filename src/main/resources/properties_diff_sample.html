@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <style>
+        html { font-size: 14px }
+        .strike-through { text-decoration: line-through; }
+        td {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+        table { table-layout: fixed; }
+    </style>
+</head>
+<body>
+<div class="container-fluid px-4">
+    <div class="row pt-4">
+        <h2 class="col">Properties diff</h2>
+    </div>
+    <!-- data grid -->
+    <div class="row pt-3 px-2">
+        <table class="table table-bordered table-sm caption-top">
+            <colgroup>
+                <col style="width: 50px;"/>
+                <col/>
+                <col style="width: 80px;"/>
+                <col/>
+                <col/>
+                <col style="width: 80px;"/>
+            </colgroup>
+            <thead class="table-light">
+            <tr>
+                <th></th>
+                <th></th>
+                <th colspan="2">File1</th>
+                <th colspan="2">File2</th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>Property</th>
+                <th>Line #</th>
+                <th>Value</th>
+                <th>Value</th>
+                <th>Line #</th>
+            </tr>
+            </thead>
+            <tbody id="propsData">
+                <tr class="table-success">
+                    <td>1</td>
+                    <td>property.exists.both.matching</td>
+                    <td class="">1</td>
+                    <td class="">value1</td>
+                    <td class="">value1</td>
+                    <td class="">10</td>
+                </tr>
+
+                <tr class="table-danger">
+                    <td>2</td>
+                    <td>property.exists.both.mismatch</td>
+                    <td class="">2</td>
+                    <td class="">value1</td>
+                    <td class="">value2</td>
+                    <td class="">11</td>
+                </tr>
+
+                <tr class="table-secondary">
+                    <td>3</td>
+                    <td>property.exists.file1</td>
+                    <td class="">3</td>
+                    <td class="">value1</td>
+                    <td class="table-danger"></td>
+                    <td class="table-danger"></td>
+                </tr>
+
+                <tr class="table-secondary">
+                    <td>4</td>
+                    <td>property.exists.file2</td>
+                    <td class="table-danger"></td>
+                    <td class="table-danger"></td>
+                    <td class="">value2</td>
+                    <td class="">1</td>
+                </tr>
+
+                <tr class="table-success">
+                    <td>5</td>
+                    <td>property.exists.both.with_linebreaks</td>
+                    <td class="">4</td>
+                    <td class="">value1<br>one more line</td>
+                    <td class="">value1<br>one more line</td>
+                    <td class="">5</td>
+                </tr>
+
+                <tr class="table-success strike-through">
+                    <td>6</td>
+                    <td>property.exists.both.disabled.both.match</td>
+                    <td class="strike-through">6</td>
+                    <td class="strike-through">value1</td>
+                    <td class="strike-through">value1</td>
+                    <td class="strike-through">4</td>
+                </tr>
+
+                <tr class="table-danger strike-through">
+                    <td>7</td>
+                    <td>property.exists.both.disabled.both.mismatch</td>
+                    <td class="strike-through">7</td>
+                    <td class="strike-through">value1</td>
+                    <td class="strike-through">value2</td>
+                    <td class="strike-through">1</td>
+                </tr>
+
+                <tr class="table-success">
+                    <td>8</td>
+                    <td>property.exists.both.matching.disabled.file1</td>
+                    <td class="table-danger strike-through">8</td>
+                    <td class="table-danger strike-through">value1</td>
+                    <td class="">value1</td>
+                    <td class="">2</td>
+                </tr>
+
+                <tr class="table-danger">
+                    <td>9</td>
+                    <td>property.exists.both.mismatch.disabled.file1</td>
+                    <td class="strike-through">9</td>
+                    <td class="strike-through">value1</td>
+                    <td class="">value2</td>
+                    <td class="">6</td>
+                </tr>
+
+                <tr class="table-success">
+                    <td>10</td>
+                    <td>property.exists.both.matching.disabled.file2</td>
+                    <td class="">11</td>
+                    <td class="">value1<br>one more line</td>
+                    <td class="table-danger strike-through">value1<br>one more line</td>
+                    <td class="table-danger strike-through">8</td>
+                </tr>
+
+                <tr class="table-danger">
+                    <td>11</td>
+                    <td>property.exists.both.mismatch.disabled.file2</td>
+                    <td class="">12</td>
+                    <td class="">value1</td>
+                    <td class="strike-through">value2</td>
+                    <td class="strike-through">9</td>
+                </tr>
+
+                <tr class="table-secondary strike-through">
+                    <td>12</td>
+                    <td>property.exists.file1.disabled.missing.file2</td>
+                    <td class="strike-through">13</td>
+                    <td class="strike-through">value1<br>one more line</td>
+                    <td class="table-danger"></td>
+                    <td class="table-danger"></td>
+                </tr>
+
+                <tr class="table-secondary strike-through">
+                    <td>13</td>
+                    <td>property.exists.file2.disabled.missing.file1</td>
+                    <td class="table-danger"></td>
+                    <td class="table-danger"></td>
+                    <td class="strike-through">value2</td>
+                    <td class="strike-through">14</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script>
+    const sampleData = [
+        {property: 'property.exists.both.matching', 's1_line_number': 1, 's1_value': 'value1', 's2_line_number': 10, 's2_value': 'value1'},
+        {property: 'property.exists.both.mismatch', 's1_line_number': 2, 's1_value': 'value1', 's2_line_number': 11, 's2_value': 'value2'},
+        {property: 'property.exists.file1', 's1_line_number': 3, 's1_value': 'value1'},
+        {property: 'property.exists.file2', 's2_line_number': 1, 's2_value': 'value2'},
+        {property: 'property.exists.both.with_linebreaks', 's1_line_number': 4, 's1_value': 'value1\none more line', 's2_line_number': 5, 's2_value': 'value1\none more line'},
+        {property: 'property.exists.both.disabled.both.match', 's1_line_number': 6, 's1_value': 'value1', 's1_disabled': true, 's2_line_number': 4, 's2_value': 'value1', 's2_disabled': true},
+        {property: 'property.exists.both.disabled.both.mismatch', 's1_line_number': 7, 's1_value': 'value1', 's1_disabled': true, 's2_line_number': 1, 's2_value': 'value2', 's2_disabled': true},
+        {property: 'property.exists.both.matching.disabled.file1', 's1_line_number': 8, 's1_value': 'value1', 's1_disabled': true, 's2_line_number': 2, 's2_value': 'value1', 's2_disabled': false},
+        {property: 'property.exists.both.mismatch.disabled.file1', 's1_line_number': 9, 's1_value': 'value1', 's1_disabled': true, 's2_line_number': 6, 's2_value': 'value2', 's2_disabled': false},
+        {property: 'property.exists.both.matching.disabled.file2', 's1_line_number': 11, 's1_value': 'value1\none more line', 's2_line_number': 8, 's2_value': 'value1\none more line', 's2_disabled': true},
+        {property: 'property.exists.both.mismatch.disabled.file2', 's1_line_number': 12, 's1_value': 'value1', 's2_line_number': 9, 's2_value': 'value2', 's2_disabled': true},
+        {property: 'property.exists.file1.disabled.missing.file2', 's1_line_number': 13, 's1_value': 'value1\none more line', 's1_disabled': true},
+        {property: 'property.exists.file2.disabled.missing.file1', 's2_line_number': 14, 's2_value': 'value2', 's2_disabled': true},
+    ];
+</script>
+</body>
+</html>

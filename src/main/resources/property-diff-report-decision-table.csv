@@ -1,0 +1,13 @@
+﻿s1_exists,s2_exists,match,s1_inactive,s2_inactive,p_color,p_inactive,s1_color,s2_color
+1,1,1,0,0,success,0,none,none
+1,1,0,0,0,danger,0,none,none
+1,0,0,0,0,secondary,0,none,danger
+0,1,0,0,0,secondary,0,danger,none
+1,1,1,1,1,success,1,none,none
+1,1,0,1,1,danger,1,none,none
+1,1,1,1,0,success,0,danger,none
+1,1,0,1,0,danger,0,none,none
+1,1,1,0,1,success,0,none,danger
+1,1,0,0,1,danger,0,none,none
+1,0,0,1,0,secondary,1,none,danger
+0,1,0,0,1,secondary,1,danger,none
