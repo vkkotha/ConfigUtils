@@ -14,17 +14,18 @@ This is to easily identify which configuration entries are matching, differing a
 <br><br>
 ![image](https://user-images.githubusercontent.com/4230336/133956204-4aaa56de-4097-463e-8e0e-5ed184e3339a.png)
  
-## Install
+## Getting Started
+### Prerequisites
+- JDK 8+
+### Install
 Download *ConfigUtils-${version}-app.jar*
-
-## Installing from source
+### Install from source
 Clone/Download git repo, and build from the source.
 ```bash
 $ ./gradlew build
 ```
 Copy *build/libs/ConfigUtils-${version}-app.jar* to desired directory and use it.
-
-## Usage
+### Usage
 ```bash
 usage: java -jar ConfigUtils-${version}-app.jar <file1> <file2> [OPTIONS]
  -d <arg>    Use diff tool [diff executable]
@@ -35,6 +36,15 @@ Run ConfigUtils on command line with to generate a text report
 ```bash
 $ java -jar ConfigUtils-${version}-app.jar <file1> <file2>
 ```
+
+## Contributing
+### Submit code
+- Fork Repository and Clone.
+- Create feature branch and commit.
+- push changes to Cloned repo.
+- Create pull request and submit.
+### Report Defects
+- Submit new issues [Here](https://github.com/vkkotha/ConfigUtils/issues/new)
 
 ## License
 ConfigUtils is provided under the [MIT License.](https://github.com/vkkotha/ConfigUtils/blob/master/LICENSE)
