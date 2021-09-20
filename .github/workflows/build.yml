@@ -33,7 +33,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        NEW_VERSION = $(echo "${GITHUB_REF}" | cut -d "/" -f3)
+        NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
         echo "New Version: ${NEW_VERSION}"
         echo "Github username: ${GITHUB_ACTOR}"
         ./gradlew -Pversion=${NEW_VERSION} publish
