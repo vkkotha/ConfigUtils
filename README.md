@@ -1,9 +1,11 @@
-# Configuration Utilities
+<h1 style="text-align: center;">
+Configuration Utilities
+</h1>
 
 This project has tools to generate differences between two Properties file. 
 This is to easily identify which configuration entries are matching, differing and missing.
 
-## Capabiltes
+## Features
 * Order properties and introduce new lines, so it's easy to compare property files with your local diff tool
 ![image](https://user-images.githubusercontent.com/4230336/133955547-9a83344e-e57d-43db-98d9-87ce8c7cd652.png)
 * Generate diff output to console, identifying matching, mismatch, only in source1 and only in source2 clearly
