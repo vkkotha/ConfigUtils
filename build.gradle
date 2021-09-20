@@ -15,7 +15,7 @@ java {
     }
 }
 
-task uberJar(type: Jar) {
+task appJar(type: Jar) {
     archiveClassifier = 'app'
     dependsOn configurations.runtimeClasspath
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
@@ -30,9 +30,14 @@ task uberJar(type: Jar) {
     ]}
 }
 
+jar {
+    it.dependsOn appJar
+}
+
 compileJava {
     options.compilerArgs << '-Xlint:unchecked'
 }
+
 
 dependencies {
     implementation 'commons-cli:commons-cli:1.4'
