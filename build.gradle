@@ -1,5 +1,18 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/vkkotha/ConfigUtils"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 group 'org.vktools'
@@ -10,7 +23,7 @@ repositories {
 }
 
 java {
-    toolchain {
+    toolchain{
         languageVersion = JavaLanguageVersion.of(8)
     }
 }
@@ -36,17 +49,6 @@ jar {
 
 compileJava {
     options.compilerArgs << '-Xlint:unchecked'
-}
-
-publishing {
-    repositories {
-        name = "GitHubPackages"
-        url = "https://maven.pkg.github.com/vkkotha/ConfigUtils"
-        credentials {
-            username = System.getenv("GITHUB_ACTOR")
-            password = System.getEnv("GITHUB_TOKEN")
-        }
-    }
 }
 
 dependencies {
