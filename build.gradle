@@ -38,6 +38,16 @@ compileJava {
     options.compilerArgs << '-Xlint:unchecked'
 }
 
+publishing {
+    repositories {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/vkkotha/ConfigUtils"
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getEnv("GITHUB_TOKEN")
+        }
+    }
+}
 
 dependencies {
     implementation 'commons-cli:commons-cli:1.4'
