@@ -15,12 +15,15 @@ publishing {
     }
     publications {
         gpr(MavenPublication) {
-            from(components.java)
+            groupId = project.group
+            artifactId = 'config-utils'
+            version = project.version
+            from components.java
         }
     }
 }
 
-group 'org.vktools'
+group 'org.vkkotha'
 version '1.0-SNAPSHOT'
 
 repositories {
