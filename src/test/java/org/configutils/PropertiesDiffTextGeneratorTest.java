@@ -93,7 +93,7 @@ public class PropertiesDiffTextGeneratorTest {
         assertThat(text, containsString(DiffCategory.S1_ONLY.getValue()));
         assertThat(text, not(containsString(DiffCategory.S2_ONLY.getValue())));
 
-        assertThat(text, allOf(containsString("key1=value1")));
+        assertThat(text, containsString("key1=value1"));
     }
 
     @Test
@@ -112,7 +112,97 @@ public class PropertiesDiffTextGeneratorTest {
         assertThat(text, not(containsString(DiffCategory.S1_ONLY.getValue())));
         assertThat(text, containsString(DiffCategory.S2_ONLY.getValue()));
 
-        assertThat(text, allOf(containsString("key1=value1")));
+        assertThat(text, containsString("key1=value1"));
+    }
+
+    @Test
+    public void shouldHaveHashBeforeDisabledProperty() {
+        PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
+        List<PropertyDiffDetail> data = new ArrayList<>();
+        PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
+                null,
+                new PropertyValue("value1", false, 1));
+        data.add(prop1);
+
+        String text = diffGenerator.generateText(data);
+
+        assertThat(text, containsString("# key1=value1"));
+    }
+
+    @Test
+    public void shouldHaveHashAndShouldBeInMatchingSection_If_DisabledInBothSources() {
+        PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
+        List<PropertyDiffDetail> data = new ArrayList<>();
+        PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
+                new PropertyValue("value1", false, 1),
+                new PropertyValue("value1", false, 1));
+        data.add(prop1);
+
+        String text = diffGenerator.generateText(data);
+
+        assertThat(text, containsString(DiffCategory.MATCHING.getValue()));
+        assertThat(text, not(containsString(DiffCategory.MISMATCH.getValue())));
+        assertThat(text, not(containsString(DiffCategory.S1_ONLY.getValue())));
+        assertThat(text, not(containsString(DiffCategory.S2_ONLY.getValue())));
+
+        assertThat(text, containsString("# key1=value1"));
+    }
+
+    @Test
+    public void shouldHaveHashAndShouldBeInMismatchSection_If_EnabledOnlyInOne() {
+        PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
+        List<PropertyDiffDetail> data = new ArrayList<>();
+        PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
+                new PropertyValue("value1", true, 1),
+                new PropertyValue("value1", false, 1));
+        data.add(prop1);
+
+        String text = diffGenerator.generateText(data);
+
+        assertThat(text, not(containsString(DiffCategory.MATCHING.getValue())));
+        assertThat(text, containsString(DiffCategory.MISMATCH.getValue()));
+        assertThat(text, not(containsString(DiffCategory.S1_ONLY.getValue())));
+        assertThat(text, not(containsString(DiffCategory.S2_ONLY.getValue())));
+
+        assertThat(text, containsString("# key1=value1"));
+    }
+
+    @Test
+    public void shouldHaveHashAndShouldBeInS1Section_If_DisabledPropertyOnlyInS1() {
+        PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
+        List<PropertyDiffDetail> data = new ArrayList<>();
+        PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
+                new PropertyValue("value1", false, 1),
+                null);
+        data.add(prop1);
+
+        String text = diffGenerator.generateText(data);
+
+        assertThat(text, not(containsString(DiffCategory.MATCHING.getValue())));
+        assertThat(text, not(containsString(DiffCategory.MISMATCH.getValue())));
+        assertThat(text, containsString(DiffCategory.S1_ONLY.getValue()));
+        assertThat(text, not(containsString(DiffCategory.S2_ONLY.getValue())));
+
+        assertThat(text, containsString("# key1=value1"));
+    }
+
+    @Test
+    public void shouldHaveHashAndShouldBeInS2Section_If_DisabledPropertyOnlyInS2() {
+        PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
+        List<PropertyDiffDetail> data = new ArrayList<>();
+        PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
+                null,
+                new PropertyValue("value1", false, 1));
+        data.add(prop1);
+
+        String text = diffGenerator.generateText(data);
+
+        assertThat(text, not(containsString(DiffCategory.MATCHING.getValue())));
+        assertThat(text, not(containsString(DiffCategory.MISMATCH.getValue())));
+        assertThat(text, not(containsString(DiffCategory.S1_ONLY.getValue())));
+        assertThat(text, containsString(DiffCategory.S2_ONLY.getValue()));
+
+        assertThat(text, containsString("# key1=value1"));
     }
 
     @Test
@@ -144,4 +234,5 @@ public class PropertiesDiffTextGeneratorTest {
         assertThat(text, containsString(DiffCategory.MATCHING.getValue()));
         assertThat(text, containsString("key1=value1"));
     }
+
 }

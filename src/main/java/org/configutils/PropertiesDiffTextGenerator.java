@@ -68,11 +68,12 @@ public class PropertiesDiffTextGenerator extends PropertiesDiffGenerator {
             buffer.append("--- " + category.getValue() + " ---\n");
             diffDetails.forEach(detail -> {
                 String value = (category == DiffCategory.S2_ONLY) ? detail.getS2_value(): detail.getS1_value();
+                Boolean disabled = (category == DiffCategory.S2_ONLY) ? detail.getS2_disabled(): detail.getS1_disabled();
                 if (category == DiffCategory.MISMATCH) {
-                    buffer.append("> " + detail.getProperty() + "=" + value + "\n");
-                    buffer.append("< " + detail.getProperty() + "=" + detail.getS2_value() + "\n");
+                    buffer.append("> " + (detail.getS1_disabled() ? "# ": "") + detail.getProperty() + "=" + value + "\n");
+                    buffer.append("< " + (detail.getS2_disabled() ? "# ": "") + detail.getProperty() + "=" + detail.getS2_value() + "\n");
                 } else {
-                    buffer.append(detail.getProperty() + "=" + value + "\n");
+                    buffer.append((disabled ? "# ": "") + detail.getProperty() + "=" + value + "\n");
                 }
             });
         }
@@ -83,7 +84,7 @@ public class PropertiesDiffTextGenerator extends PropertiesDiffGenerator {
         Map<DiffCategory, List<PropertyDiffDetail>> categorizedDiffs = new EnumMap<>(DiffCategory.class);
         diffDetails.forEach(diff -> {
             if (diff.getS1_value() != null && diff.getS2_value() != null) {
-                if (diff.getS1_value().equals(diff.getS2_value())) {
+                if (diff.getS1_value().equals(diff.getS2_value()) && diff.getS1_disabled().equals(diff.getS2_disabled())) {
                     addTo(categorizedDiffs, DiffCategory.MATCHING, diff);
                 } else {
                     addTo(categorizedDiffs, DiffCategory.MISMATCH, diff);
