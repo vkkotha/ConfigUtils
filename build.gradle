@@ -29,7 +29,7 @@ repositories {
 }
 
 java {
-    toolchain{
+    toolchain {
         languageVersion = JavaLanguageVersion.of(8)
     }
 }
@@ -43,10 +43,12 @@ task allJar(type: Jar) {
         attributes 'Main-Class': 'org.configutils.PropertiesDiffCli'
     }
 
-    from {[
-        sourceSets.main.output,
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-    ]}
+    from {
+        [
+            sourceSets.main.output,
+            configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+        ]
+    }
 }
 
 jar {
@@ -61,10 +63,10 @@ dependencies {
     implementation 'commons-cli:commons-cli:1.4'
     implementation 'commons-io:commons-io:2.11.0'
     implementation 'com.google.code.gson:gson:2.8.8'
-    testImplementation ('pl.pragmatists:JUnitParams:1.1.1') {
+    testImplementation('pl.pragmatists:JUnitParams:1.1.1') {
         exclude group: 'junit'
     }
-    testImplementation ('junit:junit:4.13.2') {
+    testImplementation('junit:junit:4.13.2') {
         exclude group: 'hamcrest'
     }
     testImplementation 'org.hamcrest:hamcrest-core:2.2'
