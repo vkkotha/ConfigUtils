@@ -21,7 +21,7 @@ public class PropertiesDiffCliTest {
 
     private final PrintStream console = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private static final String EXPECTED_USAGE_STRING = "usage: java -jar ConfigUtils-<version>-app.jar <file1> <file2> [OPTIONS]";
+    private static final String EXPECTED_USAGE_STRING = "usage: java -jar config-utils-<version>-all.jar <file1> <file2> [OPTIONS]";
 
     @Before
     public void setUp() {

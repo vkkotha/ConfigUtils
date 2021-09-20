@@ -36,8 +36,8 @@ java {
     }
 }
 
-task appJar(type: Jar) {
-    archiveClassifier = 'app'
+task allJar(type: Jar) {
+    archiveClassifier = 'all'
     dependsOn configurations.runtimeClasspath
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 

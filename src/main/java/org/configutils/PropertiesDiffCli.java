@@ -14,7 +14,7 @@ public class PropertiesDiffCli {
     }
 
     private static void printUsage(Options options) {
-        new HelpFormatter().printHelp("java -jar ConfigUtils-<version>-app.jar <file1> <file2> [OPTIONS]", options);
+        new HelpFormatter().printHelp("java -jar config-utils-<version>-all.jar <file1> <file2> [OPTIONS]", options);
     }
 
     private Options setupCommandOptions() {

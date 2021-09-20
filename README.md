@@ -21,23 +21,23 @@ This is to easily identify which configuration entries are matching, differing a
 ### Prerequisites
 - JDK 8+
 ### Install
-Download *ConfigUtils-${version}-app.jar*
+Download *config-utils-${version}-all.jar*
 ### Install from source
 Clone/Download git repo, and build from the source.
 ```bash
 $ ./gradlew build
 ```
-Copy *build/libs/ConfigUtils-${version}-app.jar* to desired directory and use it.
+Copy *build/libs/config-utils-${version}-all.jar* to desired directory and use it.
 ### Usage
 ```bash
-usage: java -jar ConfigUtils-${version}-app.jar <file1> <file2> [OPTIONS]
+usage: java -jar config-utils-${version}-all.jar <file1> <file2> [OPTIONS]
  -d <arg>    Use diff tool [diff executable]
  -h,--help   Print help
  -r <arg>    Generate report [text | html]
 ```
 Run ConfigUtils on command line with to generate a text report
 ```bash
-$ java -jar ConfigUtils-${version}-app.jar <file1> <file2>
+$ java -jar config-utils-${version}-all.jar <file1> <file2>
 ```
 
 ## Contributing
