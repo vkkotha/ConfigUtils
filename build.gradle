@@ -2,8 +2,6 @@ plugins {
     id 'java-library'
     id 'maven-publish'
 }
-group 'org.vkkotha'
-version '1.0-SNAPSHOT'
 
 publishing {
     repositories {
