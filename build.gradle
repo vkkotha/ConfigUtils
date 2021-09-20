@@ -52,7 +52,7 @@ task allJar(type: Jar) {
 }
 
 jar {
-    it.dependsOn appJar
+    it.dependsOn allJar
 }
 
 compileJava {
