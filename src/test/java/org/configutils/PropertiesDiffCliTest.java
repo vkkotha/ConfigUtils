@@ -21,6 +21,7 @@ public class PropertiesDiffCliTest {
 
     private final PrintStream console = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private static final String EXPECTED_USAGE_STRING = "usage: java -jar ConfigUtils-<version>-app.jar <file1> <file2> [OPTIONS]";
 
     @Before
     public void setUp() {
@@ -34,11 +35,11 @@ public class PropertiesDiffCliTest {
 
     @Test
     public void shouldPrintHelpWhenNoArgs() {
-        PropertiesDiffCli cli = buildPropertiesDiffCli(new String[] {});
+        PropertiesDiffCli cli = buildPropertiesDiffCli(new String[]{});
         cli.execute();
         String output = outputStreamCaptor.toString().trim();
 
-        assertThat(output, containsString("usage: PropertiesDiffCli [OPTIONS] <file1> <file2>"));
+        assertThat(output, containsString(EXPECTED_USAGE_STRING));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
         String output = outputStreamCaptor.toString().trim();
 
-        assertThat(output, containsString("usage: PropertiesDiffCli [OPTIONS] <file1> <file2>"));
+        assertThat(output, containsString(EXPECTED_USAGE_STRING));
     }
 
     @Test
@@ -57,7 +58,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
         String output = outputStreamCaptor.toString().trim();
 
-        assertThat(output, containsString("usage: PropertiesDiffCli [OPTIONS] <file1> <file2>"));
+        assertThat(output, containsString(EXPECTED_USAGE_STRING));
     }
 
     @Test(expected = RuntimeException.class)
@@ -77,7 +78,7 @@ public class PropertiesDiffCliTest {
 
         cli.execute();
 
-        verify(mockCommand, times(1)).execute(new String[] { "file1", "file2" });
+        verify(mockCommand, times(1)).execute(new String[]{"file1", "file2"});
     }
 
     @Test
@@ -91,7 +92,7 @@ public class PropertiesDiffCliTest {
 
         cli.execute();
 
-        verify(mockCommand, times(1)).execute(new String[] { "file1", "file2" });
+        verify(mockCommand, times(1)).execute(new String[]{"file1", "file2"});
     }
 
     @Test
@@ -106,7 +107,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
 
         verify(mockCommandFactory, times(1)).getPropertiesReportGeneratorCommand("text");
-        verify(mockCommand, times(1)).execute(new String[] { "file1", "file2" });
+        verify(mockCommand, times(1)).execute(new String[]{"file1", "file2"});
     }
 
     @Test
@@ -121,7 +122,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
 
         verify(mockCommandFactory, times(1)).getPropertiesReportGeneratorCommand("html");
-        verify(mockCommand, times(1)).execute(new String[] { "file1", "file2" });
+        verify(mockCommand, times(1)).execute(new String[]{"file1", "file2"});
     }
 
     @Test
@@ -136,7 +137,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
 
         verify(mockCommandFactory, times(1)).getPropertiesDiffToolCommand("meld");
-        verify(mockCommand, times(1)).execute(new String[] { "file1", "file2" });
+        verify(mockCommand, times(1)).execute(new String[]{"file1", "file2"});
     }
 
     private PropertiesDiffCli buildPropertiesDiffCli(String[] args) {

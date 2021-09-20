@@ -35,7 +35,7 @@ public class PropertiesDiffGeneratorTest {
 
         List<PropertyDiffDetail> expected = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1", new PropertyValue("value1", true, 1),
-                new PropertyValue("value2", true, 1));
+            new PropertyValue("value2", true, 1));
         expected.add(prop1);
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
@@ -83,7 +83,7 @@ public class PropertiesDiffGeneratorTest {
     public void testForMissingInSource1() throws IOException {
         String props1 = "key1=value1";
         String props2 = "key1=value2\n"
-                + "key2=value2";
+            + "key2=value2";
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
         assertNotNull(result);
@@ -111,7 +111,7 @@ public class PropertiesDiffGeneratorTest {
     @Test
     public void testForMissingInSource2() throws IOException {
         String props1 = "key1=value1\n"
-                + "key2=value2";
+            + "key2=value2";
         String props2 = "key2=value3";
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
@@ -140,9 +140,9 @@ public class PropertiesDiffGeneratorTest {
     @Test
     public void testForMultilineMatch() throws IOException {
         String props1 = "key1=match \\\n"
-                + "  test\n";
+            + "  test\n";
         String props2 = "key1=match \\\n"
-                + "  test\n";
+            + "  test\n";
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
 
@@ -162,7 +162,7 @@ public class PropertiesDiffGeneratorTest {
     @Test
     public void testForMultilineMisMatch() throws IOException {
         String props1 = "key1=match \\\n"
-                + "  test\n";
+            + "  test\n";
         String props2 = "key1=mismatch";
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
@@ -183,10 +183,10 @@ public class PropertiesDiffGeneratorTest {
     @Test
     public void testForCommentdProperties() throws IOException {
         String props1 = "key1=one\n"
-                + "#key2=commented\n";
+            + "#key2=commented\n";
         String props2 = "#key1=one-commented\\\n"
-                + " line\n"
-                + "#key2=commented\n";
+            + " line\n"
+            + "#key2=commented\n";
 
         List<PropertyDiffDetail> result = generateDiff(props1, props2);
 

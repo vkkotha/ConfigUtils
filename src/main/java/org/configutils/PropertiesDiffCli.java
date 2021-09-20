@@ -19,7 +19,7 @@ public class PropertiesDiffCli {
 
     private Options setupCommandOptions() {
         Options options = new Options();
-        options.addOption(new Option("h", "help",false, "Print help"));
+        options.addOption(new Option("h", "help", false, "Print help"));
         Option diffOption = new Option("d", true, "Use diff tool [diff executable]");
         diffOption.setOptionalArg(true);
         options.addOption(diffOption);
@@ -53,7 +53,7 @@ public class PropertiesDiffCli {
             }
         } catch (final ParseException pe) {
             printUsage(options);
-        } catch(IOException ie)  {
+        } catch (IOException ie) {
             throw new RuntimeException(ie);
         }
     }

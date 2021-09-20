@@ -19,7 +19,7 @@ public class PropertyLineReader extends LineNumberReader {
 
             if (l != null) {
                 if (l.endsWith("\\")) {
-                    String pl = l.substring(0, l.length()-1);
+                    String pl = l.substring(0, l.length() - 1);
                     if (currentPropertyLine == null) {
                         propertyLineNumber = super.getLineNumber();
                         currentPropertyLine = new StringBuffer(pl);

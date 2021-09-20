@@ -39,8 +39,8 @@ public class PropertyLineReaderTest {
     @Test
     public void readPropertyLineWithContinuation() throws IOException {
         String text = "key1=one \\"
-                + System.getProperty("line.separator")
-                + "two";
+            + System.getProperty("line.separator")
+            + "two";
         PropertyLineReader reader = new PropertyLineReader(new StringReader(text));
         String result = reader.readLine();
         assertEquals("key1=one \ntwo", result);
@@ -51,7 +51,7 @@ public class PropertyLineReaderTest {
     @Test
     public void readPropertyLineWithNewlineContinuation() throws IOException {
         String text = "key1=one \\\n"
-                + "two";
+            + "two";
         PropertyLineReader reader = new PropertyLineReader(new StringReader(text));
         String result = reader.readLine();
         assertEquals("key1=one \ntwo", result);
@@ -62,10 +62,10 @@ public class PropertyLineReaderTest {
     @Test
     public void readPropertyLinesWithMultipleContinuations() throws IOException {
         String text = "key1=one \\\n"
-                + "two\n"
-                + "key2=three \\\n"
-                + "   four\n"
-                + "key3=abc\\\n";
+            + "two\n"
+            + "key2=three \\\n"
+            + "   four\n"
+            + "key3=abc\\\n";
         PropertyLineReader reader = new PropertyLineReader(new StringReader(text));
 
         String result = reader.readLine();
@@ -87,8 +87,8 @@ public class PropertyLineReaderTest {
     @Test
     public void readPropertyLinesWithDuplicates() throws Exception {
         String text = "key1=one\n"
-                + "key2=two\n"
-                + "key1=duplicate\n";
+            + "key2=two\n"
+            + "key1=duplicate\n";
         PropertyLineReader reader = new PropertyLineReader(new StringReader(text));
 
         String result = reader.readLine();

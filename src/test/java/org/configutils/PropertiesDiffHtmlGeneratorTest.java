@@ -44,8 +44,8 @@ public class PropertiesDiffHtmlGeneratorTest {
         PropertiesDiffHtmlGenerator diffGenerator = new PropertiesDiffHtmlGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", true, 1),
-                null);
+            new PropertyValue("value1", true, 1),
+            null);
         data.add(prop1);
 
         String markup = diffGenerator.generateMarkup(data);

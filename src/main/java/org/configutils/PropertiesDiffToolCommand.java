@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 public class PropertiesDiffToolCommand implements Command {
     private final Shell shell;
     public String diffExecutable;
-    public static enum Source { S1, S2};
+
+    public static enum Source {S1, S2}
 
     public PropertiesDiffToolCommand(Shell shell) {
         this(shell, null);
@@ -30,6 +31,7 @@ public class PropertiesDiffToolCommand implements Command {
             this.diffExecutable = diffExecutable;
         }
     }
+
     @Override
     public void execute(String[] args) throws IOException {
         String file1 = args[0];
@@ -45,7 +47,7 @@ public class PropertiesDiffToolCommand implements Command {
         List<PropertyDiffDetail> diffDetailList = diffGenerator.generateDiff(new FileReader(file1), new FileReader(file2));
         // Sort list by property name
         diffDetailList = diffDetailList.stream().sorted(Comparator.comparing(PropertyDiffDetail::getProperty))
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
         Path outFile1 = generateTempPropertiesFile(diffDetailList, Source.S1, file1);
         Path outFile2 = generateTempPropertiesFile(diffDetailList, Source.S2, file2);
 
@@ -85,7 +87,7 @@ public class PropertiesDiffToolCommand implements Command {
         }
         Path tempFile = Files.createTempFile(fileName + "-", fileExt);
 
-        try(BufferedWriter writer = Files.newBufferedWriter(tempFile, Charset.forName("UTF-8"))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile, Charset.forName("UTF-8"))) {
             generateTempPropertiesFile(diffDetailList, source, writer);
         }
 

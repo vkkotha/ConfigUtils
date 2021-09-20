@@ -67,13 +67,13 @@ public class PropertiesDiffTextGenerator extends PropertiesDiffGenerator {
         if (diffDetails != null) {
             buffer.append("--- " + category.getValue() + " ---\n");
             diffDetails.forEach(detail -> {
-                String value = (category == DiffCategory.S2_ONLY) ? detail.getS2_value(): detail.getS1_value();
-                Boolean disabled = (category == DiffCategory.S2_ONLY) ? detail.getS2_disabled(): detail.getS1_disabled();
+                String value = (category == DiffCategory.S2_ONLY) ? detail.getS2_value() : detail.getS1_value();
+                Boolean disabled = (category == DiffCategory.S2_ONLY) ? detail.getS2_disabled() : detail.getS1_disabled();
                 if (category == DiffCategory.MISMATCH) {
-                    buffer.append("> " + (detail.getS1_disabled() ? "# ": "") + detail.getProperty() + "=" + value + "\n");
-                    buffer.append("< " + (detail.getS2_disabled() ? "# ": "") + detail.getProperty() + "=" + detail.getS2_value() + "\n");
+                    buffer.append("> " + (detail.getS1_disabled() ? "# " : "") + detail.getProperty() + "=" + value + "\n");
+                    buffer.append("< " + (detail.getS2_disabled() ? "# " : "") + detail.getProperty() + "=" + detail.getS2_value() + "\n");
                 } else {
-                    buffer.append((disabled ? "# ": "") + detail.getProperty() + "=" + value + "\n");
+                    buffer.append((disabled ? "# " : "") + detail.getProperty() + "=" + value + "\n");
                 }
             });
         }

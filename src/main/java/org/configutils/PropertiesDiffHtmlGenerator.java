@@ -3,7 +3,6 @@ package org.configutils;
 import com.google.gson.Gson;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -37,8 +36,8 @@ public class PropertiesDiffHtmlGenerator extends PropertiesDiffGenerator {
         String template = readResourceFile("properties_diff_template.html");
         String markup = template.replaceAll("__PROPS_DATA__", json);
 
-        String source1 = this.file1 != null ? FilenameUtils.getName(this.file1): "Source1";
-        String source2 = this.file1 != null ? FilenameUtils.getName(this.file2): "Source1";
+        String source1 = this.file1 != null ? FilenameUtils.getName(this.file1) : "Source1";
+        String source2 = this.file1 != null ? FilenameUtils.getName(this.file2) : "Source1";
         markup = markup.replaceAll("__SOURCE1__", source1);
         markup = markup.replaceAll("__SOURCE2__", source2);
 

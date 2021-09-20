@@ -10,7 +10,7 @@ public class PropertyValue {
 
     public PropertyValue(String value) {
         this(value, true);
-    } 
+    }
 
     public PropertyValue(String value, boolean enabled) {
         this(value, enabled, 0);
@@ -45,8 +45,8 @@ public class PropertyValue {
         if (o == null || getClass() != o.getClass()) return false;
         PropertyValue that = (PropertyValue) o;
         return enabled == that.enabled &&
-                lineNumber == that.lineNumber &&
-                Objects.equals(value, that.value);
+            lineNumber == that.lineNumber &&
+            Objects.equals(value, that.value);
     }
 
     @Override
@@ -57,9 +57,9 @@ public class PropertyValue {
     @Override
     public String toString() {
         return "PropertyValue{" +
-                "value='" + value + '\'' +
-                ", enabled=" + enabled +
-                ", lineNumber=" + lineNumber +
-                '}';
+            "value='" + value + '\'' +
+            ", enabled=" + enabled +
+            ", lineNumber=" + lineNumber +
+            '}';
     }
 }

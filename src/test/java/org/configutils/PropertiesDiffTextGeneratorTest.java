@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.configutils.PropertiesDiffTextGenerator.DiffCategory;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 
@@ -44,8 +45,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", true, 1),
-                new PropertyValue("value1", true, 1));
+            new PropertyValue("value1", true, 1),
+            new PropertyValue("value1", true, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -62,8 +63,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", true, 1),
-                new PropertyValue("value2", true, 2));
+            new PropertyValue("value1", true, 1),
+            new PropertyValue("value2", true, 2));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -82,8 +83,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", true, 1),
-                null);
+            new PropertyValue("value1", true, 1),
+            null);
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -101,8 +102,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                null,
-                new PropertyValue("value1", true, 1));
+            null,
+            new PropertyValue("value1", true, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -120,8 +121,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                null,
-                new PropertyValue("value1", false, 1));
+            null,
+            new PropertyValue("value1", false, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -134,8 +135,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", false, 1),
-                new PropertyValue("value1", false, 1));
+            new PropertyValue("value1", false, 1),
+            new PropertyValue("value1", false, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -153,8 +154,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", true, 1),
-                new PropertyValue("value1", false, 1));
+            new PropertyValue("value1", true, 1),
+            new PropertyValue("value1", false, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -172,8 +173,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                new PropertyValue("value1", false, 1),
-                null);
+            new PropertyValue("value1", false, 1),
+            null);
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);
@@ -191,8 +192,8 @@ public class PropertiesDiffTextGeneratorTest {
         PropertiesDiffTextGenerator diffGenerator = new PropertiesDiffTextGenerator();
         List<PropertyDiffDetail> data = new ArrayList<>();
         PropertyDiffDetail prop1 = new PropertyDiffDetail("key1",
-                null,
-                new PropertyValue("value1", false, 1));
+            null,
+            new PropertyValue("value1", false, 1));
         data.add(prop1);
 
         String text = diffGenerator.generateText(data);

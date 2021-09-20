@@ -13,12 +13,12 @@ public class PropertyDiffDetail {
 
     public PropertyDiffDetail(String key, PropertyValue v1, PropertyValue v2) {
         this.property = key;
-        this.s1_line_number = (v1 == null) ? null: v1.getLineNumber();
-        this.s1_value = (v1 == null) ? null: v1.getValue();
-        this.s1_disabled = (v1 == null) ? null: !v1.isEnabled();
-        this.s2_line_number = (v2 == null) ? null: v2.getLineNumber();
-        this.s2_value = (v2 == null) ? null: v2.getValue();
-        this.s2_disabled = (v2 == null) ? null: !v2.isEnabled();
+        this.s1_line_number = (v1 == null) ? null : v1.getLineNumber();
+        this.s1_value = (v1 == null) ? null : v1.getValue();
+        this.s1_disabled = (v1 == null) ? null : !v1.isEnabled();
+        this.s2_line_number = (v2 == null) ? null : v2.getLineNumber();
+        this.s2_value = (v2 == null) ? null : v2.getValue();
+        this.s2_disabled = (v2 == null) ? null : !v2.isEnabled();
     }
 
     public String getProperty() {
@@ -55,12 +55,12 @@ public class PropertyDiffDetail {
         if (o == null || getClass() != o.getClass()) return false;
         PropertyDiffDetail that = (PropertyDiffDetail) o;
         return property.equals(that.property) &&
-                s1_line_number.equals(that.s1_line_number) &&
-                s1_value.equals(that.s1_value) &&
-                s1_disabled.equals(that.s1_disabled) &&
-                s2_line_number.equals(that.s2_line_number) &&
-                s2_value.equals(that.s2_value) &&
-                s2_disabled.equals(that.s2_disabled);
+            s1_line_number.equals(that.s1_line_number) &&
+            s1_value.equals(that.s1_value) &&
+            s1_disabled.equals(that.s1_disabled) &&
+            s2_line_number.equals(that.s2_line_number) &&
+            s2_value.equals(that.s2_value) &&
+            s2_disabled.equals(that.s2_disabled);
     }
 
     @Override
@@ -71,13 +71,13 @@ public class PropertyDiffDetail {
     @Override
     public String toString() {
         return "PropertyDiffDetail{" +
-                "property='" + property + '\'' +
-                ", s1_line_number=" + s1_line_number +
-                ", s1_value='" + s1_value + '\'' +
-                ", s1_disabled=" + s1_disabled +
-                ", s2_line_number=" + s2_line_number +
-                ", s2_value='" + s2_value + '\'' +
-                ", s2_disabled=" + s2_disabled +
-                '}';
+            "property='" + property + '\'' +
+            ", s1_line_number=" + s1_line_number +
+            ", s1_value='" + s1_value + '\'' +
+            ", s1_disabled=" + s1_disabled +
+            ", s2_line_number=" + s2_line_number +
+            ", s2_value='" + s2_value + '\'' +
+            ", s2_disabled=" + s2_disabled +
+            '}';
     }
 }

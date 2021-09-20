@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class PropertiesReader {
 
-    private static final Pattern multilinePropertyRegex = Pattern.compile("^([\\s#]*)(.*?)=(.*)", Pattern.DOTALL);;
+    private static final Pattern multilinePropertyRegex = Pattern.compile("^([\\s#]*)(.*?)=(.*)", Pattern.DOTALL);
 
     public static Map.Entry<String, PropertyValue> parsePropertyString(String str) {
         Matcher matcher = multilinePropertyRegex.matcher(str);
@@ -21,7 +21,7 @@ public class PropertiesReader {
             return null;
         }
 
-        boolean enabled = matcher.group(1).trim().startsWith("#") ? false: true;
+        boolean enabled = matcher.group(1).trim().startsWith("#") ? false : true;
         String key = matcher.group(2);
         String value = matcher.group(3).trim();
         PropertyValue propertyValue = new PropertyValue(value, enabled);
@@ -38,7 +38,7 @@ public class PropertiesReader {
         HashMap<String, PropertyValue> properties = new HashMap<>();
         PropertyLineReader propertyReader = getPropertyLineReader(reader);
         String line;
-        while( (line = propertyReader.readLine()) != null ) {
+        while ((line = propertyReader.readLine()) != null) {
             Map.Entry<String, PropertyValue> entry = parsePropertyString(line);
             if (entry != null) {
                 entry.getValue().setLineNumber(propertyReader.getPropertyLineNumber());

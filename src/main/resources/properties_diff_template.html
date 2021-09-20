@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <style>
-        html { font-size: 14px }
-        .strike-through { text-decoration: line-through; }
+        html {
+            font-size: 14px
+        }
+
+        .strike-through {
+            text-decoration: line-through;
+        }
+
         td {
             white-space: normal !important;
             word-wrap: break-word;
         }
-        table { table-layout: fixed; }
+
+        table {
+            table-layout: fixed;
+        }
     </style>
 </head>
 <body>
@@ -71,31 +81,33 @@
                 <col style="width: 80px;"/>
             </colgroup>
             <thead class="table-light">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th colspan="2">__SOURCE1__</th>
-                    <th colspan="2">__SOURCE2__</th>
-                </tr>
-                <tr>
-                    <th>#</th>
-                    <th>Property</th>
-                    <th>Line #</th>
-                    <th>Value</th>
-                    <th>Value</th>
-                    <th>Line #</th>
-                </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th colspan="2">__SOURCE1__</th>
+                <th colspan="2">__SOURCE2__</th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>Property</th>
+                <th>Line #</th>
+                <th>Value</th>
+                <th>Value</th>
+                <th>Line #</th>
+            </tr>
             </thead>
             <tbody id="propsData">
             </tbody>
         </table>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 <script>
     class Utils {
         static strToBoolean(str) {
-            return (str === "1") ? true: false;
+            return (str === "1") ? true : false;
         }
     }
 
@@ -127,7 +139,7 @@
             // concat first 5 decision making columns and convert to decisionIndex columns and concat outcome columns
             decisionTable = decisionTable.map(l => [parseInt(l.slice(0, 5).join(""), 2), ...l.slice(5)]);
             // convert _inactive columns to boolean
-            decisionTable = decisionTable.map(l => [ l[0], l[1], Utils.strToBoolean(l[2]), l[3], l[4] ]);
+            decisionTable = decisionTable.map(l => [l[0], l[1], Utils.strToBoolean(l[2]), l[3], l[4]]);
 
             // create decisionMap with first columns as index
             const decisionMap = {};
@@ -138,7 +150,7 @@
 
         find(input) {
             // convert boolean input array to decisionIndex
-            const decisionIndex = parseInt(input.map(d => d ? '1': '0').join(''), 2);
+            const decisionIndex = parseInt(input.map(d => d ? '1' : '0').join(''), 2);
             // lookup decision output in decisionMap
             return this.decisionMap[decisionIndex];
         }
@@ -153,22 +165,23 @@
         get data() {
             return this.dataset;
         }
+
         #enhanceDataset() {
-            this.dataset = this.rawdata.map( (row, idx) => {
+            this.dataset = this.rawdata.map((row, idx) => {
                 const decision_input = this.#computeDecisionInput(row);
                 const decision_output = decisionTable.find(decision_input);
-                return { 'idx': idx+1, ...row, decision_input, decision_output};
+                return {'idx': idx + 1, ...row, decision_input, decision_output};
             });
         }
 
         #computeDecisionInput(input) {
             const s1_exists = 's1_line_number' in input;
             const s2_exists = 's2_line_number' in input;
-            const match = (s1_exists && s2_exists && (input.s1_value === input.s2_value)) ? true: false;
-            const s1_disabled = (('s1_disabled' in input) && (input.s1_disabled === true)) ? true: false;
-            const s2_disabled = (('s2_disabled' in input) && (input.s2_disabled === true)) ? true: false;
+            const match = (s1_exists && s2_exists && (input.s1_value === input.s2_value)) ? true : false;
+            const s1_disabled = (('s1_disabled' in input) && (input.s1_disabled === true)) ? true : false;
+            const s2_disabled = (('s2_disabled' in input) && (input.s2_disabled === true)) ? true : false;
 
-            return [ s1_exists, s2_exists, match, s1_disabled, s2_disabled ];
+            return [s1_exists, s2_exists, match, s1_disabled, s2_disabled];
         }
 
         query(qry) {
@@ -188,8 +201,8 @@
             if (conditions.hideMatching) {
                 ds = ds.filter(row => !row.decision_input[2]); // based on match field in decision table
             }
-            if(conditions.hideMissing) {
-                ds = ds.filter(row => 's1_value' in row && 's2_value' in row ); // get data where property exists in both sources
+            if (conditions.hideMissing) {
+                ds = ds.filter(row => 's1_value' in row && 's2_value' in row); // get data where property exists in both sources
             }
             if (conditions.hideInactive) {
                 ds = ds.filter(row => !row.decision_output[1]); // based on p_inactive field in decision table.
@@ -217,7 +230,7 @@
                 } else if (sortField in s) {
                     compareResult = 1;
                 }
-                if(sort.sortDescending) {
+                if (sort.sortDescending) {
                     compareResult *= -1;
                 }
                 return compareResult;
@@ -230,7 +243,7 @@
         }
 
         #getClassnames(color, inactive) {
-            return `${color === 'none' ? '': 'table-' + color} ${inactive ? 'strike-through': ''}`.trim();
+            return `${color === 'none' ? '' : 'table-' + color} ${inactive ? 'strike-through' : ''}`.trim();
         }
 
         #replaceNewline(str) {
@@ -242,7 +255,7 @@
             if (row) {
                 let p_color, p_inactive, s1_color, s2_color;
                 [p_color, p_inactive, s1_color, s2_color] = row.decision_output;
-                const s1_disabled  = row.decision_input[3];
+                const s1_disabled = row.decision_input[3];
                 const s2_disabled = row.decision_input[4];
 
                 return `
@@ -271,7 +284,7 @@
             if (!elem) {
                 elem = "propsData";
             }
-            const markup = `${data.map( (row) => `${this.#renderRow(row)}`).join('')}`;
+            const markup = `${data.map((row) => `${this.#renderRow(row)}`).join('')}`;
             const container = document.getElementById(elem);
             if (container) {
                 this.#removeAllChildNodes(container);

@@ -39,19 +39,19 @@ public class PropertiesReaderTest {
     @Test
     public void parseStringWithMultipleLines() {
         String propertyStr = "key=value\n"
-                + "second value\r"
-                + "third value\r\n"
-                + "fourth value \\n"
-                + "fifth value";
+            + "second value\r"
+            + "third value\r\n"
+            + "fourth value \\n"
+            + "fifth value";
 
         Map.Entry<String, PropertyValue> result = PropertiesReader.parsePropertyString(propertyStr);
 
         String expectedKey = "key";
         PropertyValue expectedPropertyValue = new PropertyValue("value\n"
-                + "second value\r"
-                + "third value\r\n"
-                + "fourth value \\n"
-                + "fifth value");
+            + "second value\r"
+            + "third value\r\n"
+            + "fourth value \\n"
+            + "fifth value");
 
         assertNotNull(result);
         assertEquals(expectedKey, result.getKey());
@@ -60,9 +60,9 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLines() throws IOException {
-        String[] lines = new String[] {
-                "key1=value1",
-                "key2=value2"
+        String[] lines = new String[]{
+            "key1=value1",
+            "key2=value2"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -78,9 +78,9 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithComments() throws IOException {
-        String[] lines = new String[] {
-                "key1=value1",
-                "#key2=value2"
+        String[] lines = new String[]{
+            "key1=value1",
+            "#key2=value2"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -96,11 +96,11 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithBadProperties() throws IOException {
-        String[] lines = new String[] {
-                "key1=value1",
-                "abc",
-                "",
-                "#key2=value2"
+        String[] lines = new String[]{
+            "key1=value1",
+            "abc",
+            "",
+            "#key2=value2"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -116,9 +116,9 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithMultilineContinuation() throws IOException {
-        String[] lines = new String[] {
-                "key1=one \\",
-                "two"
+        String[] lines = new String[]{
+            "key1=one \\",
+            "two"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -131,15 +131,15 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithCommendsAndMultilineContinuation() throws IOException {
-        String[] lines = new String[] {
-                "key1=one \\",
-                "two",
-                "key2=three \\",
-                "   four",
-                "key3=abc",
-                "#key4=abc \\",
-                "def",
-                "key5=v5"
+        String[] lines = new String[]{
+            "key1=one \\",
+            "two",
+            "key2=three \\",
+            "   four",
+            "key3=abc",
+            "#key4=abc \\",
+            "def",
+            "key5=v5"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -164,10 +164,10 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithDuplicates() throws IOException {
-        String[] lines = new String[] {
-                "key1=one",
-                "key2=two",
-                "key1=duplicate"
+        String[] lines = new String[]{
+            "key1=one",
+            "key2=two",
+            "key1=duplicate"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -183,18 +183,18 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithDuplicatesWithSomeCommented() throws IOException {
-        String[] lines = new String[] {
-                "key1=one",
-                "key1=one_override",
-                "key2=two",
-                "#key2=two_skip",
-                "#key3=three",
-                "key3=three_override_comment",
-                "key4=four",
-                "key5=five \\",
-                " six",
-                "#key4=four_comment",
-                "key4=four_final"
+        String[] lines = new String[]{
+            "key1=one",
+            "key1=one_override",
+            "key2=two",
+            "#key2=two_skip",
+            "#key3=three",
+            "key3=three_override_comment",
+            "key4=four",
+            "key5=five \\",
+            " six",
+            "#key4=four_comment",
+            "key4=four_final"
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);
@@ -219,9 +219,9 @@ public class PropertiesReaderTest {
 
     @Test
     public void parseLinesWithEqualsInValue() throws IOException {
-        String[] lines = new String[] {
-                "key1=one=equals-in=value",
-                "key2==equals-at-begining",
+        String[] lines = new String[]{
+            "key1=one=equals-in=value",
+            "key2==equals-at-begining",
         };
 
         Map<String, PropertyValue> result = PropertiesReader.loadProperties(lines);

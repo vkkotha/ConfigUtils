@@ -3,7 +3,8 @@ package org.configutils;
 import java.io.IOException;
 
 public class PropertiesDiffReportGeneratorCommand implements Command {
-    public static enum ReportFormat { TEXT, HTML };
+    public static enum ReportFormat {TEXT, HTML}
+
     private ReportFormat outFormat = ReportFormat.TEXT;
 
     public PropertiesDiffReportGeneratorCommand(String outputFormat) {
