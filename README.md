@@ -1,4 +1,5 @@
 # Configuration Utilities
+[![Build](https://github.com/vkkotha/ConfigUtils/actions/workflows/build.yml/badge.svg)](https://github.com/vkkotha/ConfigUtils/actions/workflows/build.yml)
 
 This project has tools to generate differences between two Properties file. 
 This is to easily identify which configuration entries are matching, differing and missing.

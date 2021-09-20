@@ -39,7 +39,7 @@ public class PropertiesDiffCliTest {
         cli.execute();
         String output = outputStreamCaptor.toString().trim();
 
-        assertThat(output, containsString(EXPECTED_USAGE_STRING + "1"));
+        assertThat(output, containsString(EXPECTED_USAGE_STRING));
     }
 
     @Test
