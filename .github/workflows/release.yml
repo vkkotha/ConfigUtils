@@ -1,0 +1,18 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      forceVersion:
+        description: 'Force Version'
+        required: false
+        default: ''
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: |
+        echo "Hello ${{ github.event.inputs.forceVersion }}!"
