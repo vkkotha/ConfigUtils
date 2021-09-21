@@ -22,7 +22,7 @@ publishing {
         gpr(MavenPublication) {
             groupId = project.group
             artifactId = 'config-utils'
-            version = project.version
+            version = scmVersion.version
             from components.java
         }
     }
