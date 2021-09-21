@@ -1,0 +1,13 @@
+name: Android CI
+
+on:
+  create:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checking excution
+      run: echo 'Hello wolrd'
