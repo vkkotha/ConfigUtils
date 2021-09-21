@@ -1,7 +1,10 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'pl.allegro.tech.build.axion-release' version '1.13.3'
 }
+project.group = 'org.vkkotha'
+project.version = scmVersion.version
 
 publishing {
     repositories {
