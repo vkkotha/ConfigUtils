@@ -1,5 +1,5 @@
 # Configuration Utilities
-[![Build](https://github.com/vkkotha/ConfigUtils/actions/workflows/build.yml/badge.svg)](https://github.com/vkkotha/ConfigUtils/actions/workflows/build.yml)
+[![Build](https://github.com/vkkotha/ConfigUtils/actions/workflows/cii.yml/badge.svg)](https://github.com/vkkotha/ConfigUtils/actions/workflows/ci.yml)
 [![Github All Releases](https://img.shields.io/github/downloads/vkkotha/ConfigUtils/total.svg)](https://github.com/vkkotha/ConfigUtils/releases)
 [![GitHub Issues](https://img.shields.io/github/issues/vkkotha/ConfigUtils.svg)](https://github.com/vkkotha/ConfigUtils/issues)
 
