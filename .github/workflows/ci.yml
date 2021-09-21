@@ -29,10 +29,6 @@ jobs:
         if: always()
         with:
           files: build/test-results/**/*.xml
-      - name: Publish Maven Artifacts
-        run: ./gradlew publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
