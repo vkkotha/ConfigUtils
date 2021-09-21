@@ -32,9 +32,7 @@ jobs:
           FORCE_VERSION: ${{ github.event.inputs.forceVersion }}
       - name: Retrieve version
         id: version
-        run: |
-          echo "::set-output name=RELEASE_VERSION::$(./gradlew currentVersion)"
-          echo "Releasing version ${{ RELEASE_VERION }}"
+        run: echo "::set-output name=RELEASE_VERSION::$(./gradlew currentVersion)"
       - run: echo "Releasing version ${{ steps.version.output.RELEASE_VERSION }}"
       - name: Cleanup Gradle Cache
         run: |
