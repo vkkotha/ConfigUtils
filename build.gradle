@@ -20,9 +20,6 @@ publishing {
     }
     publications {
         gpr(MavenPublication) {
-            groupId = project.group
-            artifactId = 'config-utils'
-            version = project.version
             from components.java
         }
     }
