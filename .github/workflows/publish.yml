@@ -1,12 +1,11 @@
 name: Publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  create:
 
 jobs:
   publish:
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
     runs-on: ubuntu-latest
     environment: ci
 
