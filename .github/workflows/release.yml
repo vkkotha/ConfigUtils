@@ -33,7 +33,7 @@ jobs:
       - name: Retrieve version
         id: version
         run: echo "::set-output name=RELEASE_VERSION::$(./gradlew currentVersion|awk '/Project version/{print $NF}')"
-      - run: echo "Releasing version ${{ steps.version.output.RELEASE_VERSION }}"
+      - run: echo "Releasing version ${{ steps.version.outputs.RELEASE_VERSION }}"
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
