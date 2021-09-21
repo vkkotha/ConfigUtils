@@ -3,8 +3,9 @@ plugins {
     id 'maven-publish'
     id 'pl.allegro.tech.build.axion-release' version '1.13.3'
 }
-project.group = 'org.vkkotha'
-project.version = scmVersion.version
+group = 'org.vkkotha'
+version = scmVersion.version
+archivesBaseName = 'config-utils'
 
 publishing {
     repositories {
