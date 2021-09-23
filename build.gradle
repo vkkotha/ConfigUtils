@@ -17,10 +17,10 @@ publishing {
     }
     publications {
         gpr(MavenPublication) {
-            groupId = project.group
-            artifactId = project.archivesBaseName
+//            groupId = project.group
+//            artifactId = project.archivesBaseName
 //            version = scmVersion.version
-            version = project.version
+//            version = project.version
             from components.java
         }
     }
