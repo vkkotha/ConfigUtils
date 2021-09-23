@@ -44,13 +44,13 @@ jobs:
           TAG: ${{ steps.bump.outputs.tag }}
 
       - name: Build & Test
-        run: echo "Build & Test ${{ steps.release_version.outputs.version" }}"
+        run: echo "Build & Test ${{ steps.release_version.outputs.version }}"
 
       - name: Publish Snapshot
         if: ${{ startsWith(github.ref, 'refs/heads/') }}
-        run: echo "Publish Snapshot ${{ steps.release_version.outputs.version" }}"
+        run: echo "Publish Snapshot ${{ steps.release_version.outputs.version }}"
       - name: ${{ startsWith(github.ref, 'refs/refs/v') }}
-        run: echo "Publish Release ${{ steps.release_version.outputs.version" }}"
+        run: echo "Publish Release ${{ steps.release_version.outputs.version }}"
 #      - uses: gradle/wrapper-validation-action@v1
 #      - name: set up JDK 8
 #        uses: actions/setup-java@v2
