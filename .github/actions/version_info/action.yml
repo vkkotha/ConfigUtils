@@ -35,7 +35,7 @@ runs:
   using: 'composite'
   steps:
     - name: Version check
-      id: bump
+      id: bump_main
       uses: vkkotha/github-tag-action@1.37.0-beta.1
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
@@ -44,25 +44,40 @@ runs:
         DRY_RUN: true
         TAG_CONTEXT: branch
         BUMP_STRATEGY: angular
-        DEFAULT_BUMP: minor
-        VERBOSE: true
-    - name: Print Version Info
-      shell: bash
-      run: |
-        echo "GITHUB_REF: $GITHUB_REF"
-        echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
+        DEFAULT_BUMP: patch
+        VERBOSE: false
+    - name: Version check
+      id: bump_branch
+      uses: vkkotha/github-tag-action@1.37.0-beta.1
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        WITH_V: true
+        RELEASE_BRANCHES: ${{ inputs.release_branches }}
+        DRY_RUN: true
+        TAG_CONTEXT: branch
+        BUMP_STRATEGY: skip
+        DEFAULT_BUMP: patch
+        VERBOSE: false
     - name: Get version
       id: release_version
       shell: bash
       run: |
-        if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
-        if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=version::${TAG:1}-SNAPSHOT"; fi
-        echo "::set-output name=next_tag::${NEW_TAG}"
-        echo "::set-output name=next_version::${NEW_TAG:1}"
+        echo "GITHUB_REF: $GITHUB_REF"
+        echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
+        if [[ "$GITHUB_REF" == refs/heads/main ]]; then
+          echo "::set-output name=version::${MAIN_TAG:1}-SNAPSHOT";
+          echo "::set-output name=next_tag::${MAIN_TAG}"
+          echo "::set-output name=next_version::${MAIN_TAG:1}"
+        elif [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then
+          echo "::set-output name=version::${BRANCH_TAG:1}-SNAPSHOT";
+          echo "::set-output name=next_tag::${BRANCH_TAG}"
+          echo "::set-output name=next_version::${BRANCH_TAG:1}"
+        else
+          echo "::set-output name=version::${TAG:1}";
+        fi
         echo "::set-output name=previous_tag::${TAG}"
         echo "::set-output name=previous_version::${TAG:1}"
-        echo "::set-output name=part::${PART}"
       env:
-        NEW_TAG: ${{ steps.bump.outputs.new_tag }}
-        TAG: ${{ steps.bump.outputs.tag }}
-        PART: ${{ steps.bump.outputs.part }}
+        MAIN_TAG: ${{ steps.bump_main.outputs.new_tag }}
+        BRANCH_TAG: ${{ steps.bump_branch.outputs.new_tag }}
+        TAG: ${{ steps.bump_main.outputs.tag }}
