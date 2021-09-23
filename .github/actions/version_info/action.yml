@@ -46,7 +46,14 @@ runs:
         BUMP_STRATEGY: angular
         DEFAULT_BUMP: minor
         VERBOSE: true
+    - name: Print Version Info
+      shell: bash
+      run: |
+        echo "GITHUB_REF: $GITHUB_REF"
+        echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
     - name: Get version
+      id: release_version
+      shell: bash
       run: |
         if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
         if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=version::${TAG:1}-SNAPSHOT"; fi
