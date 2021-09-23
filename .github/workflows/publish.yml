@@ -49,7 +49,8 @@ jobs:
       - name: Publish Snapshot
         if: startsWith(github.ref, 'refs/heads/')
         run: echo "Publish Snapshot ${{ steps.release_version.outputs.version }}"
-      - name: startsWith(github.ref, 'refs/refs/v')
+      - name: Publish Release
+        if: startsWith(github.ref, 'refs/tags/v')
         run: echo "Publish Release ${{ steps.release_version.outputs.version }}"
 #      - uses: gradle/wrapper-validation-action@v1
 #      - name: set up JDK 8
