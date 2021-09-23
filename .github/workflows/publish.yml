@@ -32,10 +32,22 @@ jobs:
           VERBOSE: true
       - name: Print Version Info
         run: |
-          echo "New Tag: ${{ steps.bump.outputs.new_tag }}"
-          echo "Previous tag: ${{ steps.bump.outputs.tag }}"
-          echo "Bump Type: ${{ steps.bump.outputs.part }}"
+          echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
+      - name: Get version
+        run: |
+          if [[ $GITHUB_REF == refs/heads/ ]]; then echo "Version: ${NEW_TAG:1}-SNAPSHOT"; fi
+          if [[ $GITHUB_REF == refs/tags/ ]]; then echo "Version: ${NEW_TAG:1}"; fi
+        env:
+          NEW_TAG: ${{ steps.bump.outputs.new_tag }}
+          TAG: ${{ steps.bump.outputs.tag }}
 
+      - name: Build & Test
+        run: echo "Build & Test"
+      - name: Publish Snapshot
+        if: ${{ startsWith(github.ref, 'refs/heads/') }}
+        run: echo "Publish release "
+      - name: ${{ startsWith(github.ref, 'refs/refs/v') }}
+        run: echo "Publish release"
 #      - uses: gradle/wrapper-validation-action@v1
 #      - name: set up JDK 8
 #        uses: actions/setup-java@v2
