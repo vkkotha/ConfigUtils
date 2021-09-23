@@ -44,7 +44,7 @@ jobs:
           TAG: ${{ steps.bump.outputs.tag }}
 
       - name: Build & Test
-        run: echo "Build & Test ${{ steps.release_version.VERSION" }}"
+        run: echo "Build & Test ${{ steps.release_version.outputs.version" }}"
 
       - name: Publish Snapshot
         if: ${{ startsWith(github.ref, 'refs/heads/') }}
