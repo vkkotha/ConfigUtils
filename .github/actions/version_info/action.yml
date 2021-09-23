@@ -63,7 +63,6 @@ runs:
       shell: bash
       run: |
         echo "GITHUB_REF: $GITHUB_REF"
-        echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
         if [[ "$GITHUB_REF" == refs/heads/main ]]; then
           echo "::set-output name=version::${MAIN_TAG:1}-SNAPSHOT";
           echo "::set-output name=next_tag::${MAIN_TAG}"
