@@ -32,11 +32,12 @@ jobs:
           VERBOSE: true
       - name: Print Version Info
         run: |
+          echo "GITHUB_REF: $GITHUB_REF"
           echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
       - name: Get version
         run: |
-          if [[ $GITHUB_REF == refs/heads/ ]]; then echo "Version: ${NEW_TAG:1}-SNAPSHOT"; fi
-          if [[ $GITHUB_REF == refs/tags/ ]]; then echo "Version: ${NEW_TAG:1}"; fi
+          if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "Version: ${NEW_TAG:1}-SNAPSHOT"; fi
+          if [[ "$GITHUB_REF =~ ^refs/tags/v.* ]]; then echo "Version: ${NEW_TAG:1}"; fi
         env:
           NEW_TAG: ${{ steps.bump.outputs.new_tag }}
           TAG: ${{ steps.bump.outputs.tag }}
