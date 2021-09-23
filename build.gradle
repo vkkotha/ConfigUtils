@@ -4,8 +4,8 @@ plugins {
 //    id 'pl.allegro.tech.build.axion-release' version '1.13.3'
 }
 
-group 'org.vkkotha'
-archivesBaseName 'config-utils'
+group = 'org.vkkotha'
+archivesBaseName = 'config-utils'
 
 publishing {
     repositories {
