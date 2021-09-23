@@ -47,7 +47,6 @@ runs:
         DEFAULT_BUMP: minor
         VERBOSE: true
     - name: Get version
-      id: release_version
       run: |
         if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
         if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=version::${TAG:1}-SNAPSHOT"; fi
