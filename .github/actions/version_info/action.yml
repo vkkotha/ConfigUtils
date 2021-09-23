@@ -1,0 +1,51 @@
+name: 'Get Semver Info'
+description: 'Get Semantic version information from git repo'
+author: 'vkotha'
+
+outputs:
+  next_tag:
+    description: 'Next Semantic tag'
+  next_version:
+    descripton:  'Next Semantic version'
+  previous_tag:
+    description: 'Previous tag'
+  previous_version:
+    descripton:  'Previous Semantic version'
+  verion:
+    descripton: 'Suggested release version'
+  part:
+    description: 'The part of version which was bumped'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Version check
+      id: bump
+      uses: vkkotha/github-tag-action@1.37.0-beta.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        RELEASE_BRANCHES: main,^(releases\/)?[0-9]+\.[0-9]+\.x$
+        DRY_RUN: true
+        TAG_CONTEXT: branch
+        BUMP_STRATEGY: angular
+        DEFAULT_BUMP: minor
+        VERBOSE: true
+    - name: Print Version Info
+      run: |
+        echo "GITHUB_REF: $GITHUB_REF"
+        echo "Version Info: new_tag: ${{ steps.bump.outputs.new_tag }}, tag: ${{ steps.bump.outputs.tag }}"
+    - name: Get version
+      id: release_version
+      run: |
+        if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
+        if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=version::${TAG:1}-SNAPSHOT"; fi
+        echo "::set-output name=next_tag::${NEW_TAG}"
+        echo "::set-output name=next_version::${NEW_TAG:1}"
+        echo "::set-output name=previous_tag::${TAG}"
+        echo "::set-output name=previous_version::${TAG:1}"
+        echo "::set-output name=part::${PAART}"
+      env:
+        NEW_TAG: ${{ steps.bump.outputs.new_tag }}
+        TAG: ${{ steps.bump.outputs.tag }}
+        PART: ${{ steps.bump.outputs.part }}
