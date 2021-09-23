@@ -52,6 +52,7 @@ jobs:
           ./gradlew -Pversion=${VERSION} publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.release_version.outputs.version }}
 
       - name: Publish Release artifacts
         if: startsWith(github.ref, 'refs/tags/v')
