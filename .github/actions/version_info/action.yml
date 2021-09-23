@@ -5,16 +5,22 @@ author: 'vkotha'
 outputs:
   next_tag:
     description: 'Next Semantic tag'
+    value: ${{ steps.release_version.outputs.next_tag }}
   next_version:
-    descripton:  'Next Semantic version'
+    description:  'Next Semantic version'
+    value: ${{ steps.release_version.outputs.next_version }}
   previous_tag:
     description: 'Previous tag'
+    value: ${{steps.release_version.outputs.previous_tag }}
   previous_version:
-    descripton:  'Previous Semantic version'
-  verion:
-    descripton: 'Suggested release version'
+    description:  'Previous Semantic version'
+    value: ${{ steps.release_version.outputs.previous_version }}
+  version:
+    description: 'Suggested release version'
+    value: ${{steps.release_version.outputs.version }}
   part:
     description: 'The part of version which was bumped'
+    value: ${{steps.release_version.outputs.part }}
 
 runs:
   using: 'composite'
