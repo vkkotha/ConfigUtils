@@ -2,6 +2,15 @@ name: 'Get Semver Info'
 description: 'Get Semantic version information from git repo'
 author: 'vkotha'
 
+inputs:
+  github_token:
+    description: 'Github token'
+    required: true
+  release_branches:
+    description: 'Release branches'
+    required: false
+    default: 'main,^(releases\/)?[0-9]+\.[0-9]+\.x$'
+
 outputs:
   next_tag:
     description: 'Next Semantic tag'
@@ -29,9 +38,9 @@ runs:
       id: bump
       uses: vkkotha/github-tag-action@1.37.0-beta.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
         WITH_V: true
-        RELEASE_BRANCHES: main,^(releases\/)?[0-9]+\.[0-9]+\.x$
+        RELEASE_BRANCHES: ${{ inputs.release_branches }}
         DRY_RUN: true
         TAG_CONTEXT: branch
         BUMP_STRATEGY: angular

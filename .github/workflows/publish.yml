@@ -45,8 +45,9 @@ jobs:
       - name: Get version details
         id: release_version
         uses: ./.github/actions/version_info
-        env:
-          RELEASE_BRANCHES: main,^(releases\/)?[0-9]+\.[0-9]+\.x$
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: main,^(releases\/)?[0-9]+\.[0-9]+\.x$
 
       - name: Build & Test
         run: echo "Build & Test ${{ steps.release_version.outputs.version }}"
