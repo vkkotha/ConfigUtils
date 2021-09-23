@@ -37,8 +37,8 @@ jobs:
       - name: Get version
         id: release_version
         run: |
-          if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=VERSION::${NEW_TAG:1}-SNAPSHOT"; fi
-          if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=VERSION::${NEW_TAG:1}-SNAPSHOT"; fi
+          if [[ "$GITHUB_REF" =~ ^refs/heads/.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
+          if [[ "$GITHUB_REF" =~ ^refs/tags/v.* ]]; then echo "::set-output name=version::${NEW_TAG:1}-SNAPSHOT"; fi
         env:
           NEW_TAG: ${{ steps.bump.outputs.new_tag }}
           TAG: ${{ steps.bump.outputs.tag }}
@@ -48,9 +48,9 @@ jobs:
 
       - name: Publish Snapshot
         if: ${{ startsWith(github.ref, 'refs/heads/') }}
-        run: echo "Publish Snapshot ${{ steps.release_version.VERSION" }}"
+        run: echo "Publish Snapshot ${{ steps.release_version.outputs.version" }}"
       - name: ${{ startsWith(github.ref, 'refs/refs/v') }}
-        run: echo "Publish Release ${{ steps.release_version.VERSION" }}"
+        run: echo "Publish Release ${{ steps.release_version.outputs.version" }}"
 #      - uses: gradle/wrapper-validation-action@v1
 #      - name: set up JDK 8
 #        uses: actions/setup-java@v2
